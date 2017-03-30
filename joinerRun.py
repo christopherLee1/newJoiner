@@ -10,13 +10,14 @@ def parseArgs():
    parser = argparse.ArgumentParser()
    parser.add_argument('--identifier', help='just validate given identifer')
    parser.add_argument('--database', help='validate given database, accounts for case where db is secondary key for hgFixed style tracks.')
-   parser.add_argument('--keys', help='validate keys')
-   parser.add_argument('--times', help='check update times')
-   parser.add_argument('--tableCoverage', help='check that all tables are mentioned in joiner file')
-   parser.add_argument('--dbCoverage', help='check that all databases are mentioned in joiner file')
+   parser.add_argument('--keys', action='store_true', default=False, help='validate keys')
+   parser.add_argument('--times', action='store_true', default=False, help='check update times')
+   parser.add_argument('--tableCoverage', action='store_true', default=False, help='check that all tables are mentioned in joiner file')
+   parser.add_argument('--dbCoverage', action='store_true', default=False, help='check that all databases are mentioned in joiner file')
    args = parser.parse_args()
    if len(sys.argv) < 2:
       parser.print_help()
+      exit(1)
    else:
       return args
 
@@ -61,5 +62,11 @@ def check_dbCoverage():
 #    $danRer.vegaInfoZfish.transcriptId minCheck=0.004
 # hgsql -e "select count(vegaPseudoGene.name) from danRer5.vegaPseudoGene inner join danRer5.vegaInfoZfish on vegaPseudoGene.name = vegaInfoZfish.transcriptId"
 # the minCheck means 4% of items in vegaInfoZfish.transcriptId must be in vegaPseudoGene
-options = parseArgs()
+def main():
+   options = parseArgs()
+   print("in main")
+   exit(0)
+
+if __name__ == "__main__":
+   main()
 
