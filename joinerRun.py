@@ -2,8 +2,8 @@
 import sys
 import argparse
 
-class JoinerFile(self):
-   """class that represents a joinerFile. subclasses represent different properties"""
+#class JoinerFile(self):
+#   """class that represents a joinerFile. subclasses represent different properties"""
 
 def parseArgs():
    """parse command line"""
@@ -11,11 +11,11 @@ def parseArgs():
    parser.add_argument('--identifier', help='just validate given identifer')
    parser.add_argument('--database', help='validate given database, accounts for case where db is secondary key for hgFixed style tracks.')
    parser.add_argument('--keys', help='validate keys')
-   parser.add_arugment('--times', help='check update times')
-   parser.add_arugment('--tableCoverage', help='check that all tables are mentioned in joiner file')
+   parser.add_argument('--times', help='check update times')
+   parser.add_argument('--tableCoverage', help='check that all tables are mentioned in joiner file')
    parser.add_argument('--dbCoverage', help='check that all databases are mentioned in joiner file')
    args = parser.parse_args()
-   if not args:
+   if len(sys.argv) < 2:
       parser.print_help()
    else:
       return args
